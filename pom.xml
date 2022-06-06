@@ -9,17 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-<<<<<<< HEAD
-    <artifactId>demo</artifactId>
+    <artifactId>test1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>test</name>
-    <description>Demo project for Spring Boot</description>
-=======
-    <artifactId>test</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>test</name>
+    <name>test1</name>
     <description>first project</description>
->>>>>>> d76e5236faa6be72f4613c940a4c53eeb441a0ec
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -72,11 +65,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<<<<<<< HEAD
-    </dependencies>
-
-    <build>
-=======
         <dependency>
             <groupId>org.bgee.log4jdbc-log4j2</groupId>
             <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
@@ -110,7 +98,6 @@
                 </includes>
             </resource>
         </resources>
->>>>>>> d76e5236faa6be72f4613c940a4c53eeb441a0ec
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -127,8 +114,4 @@
         </plugins>
     </build>
 
-<<<<<<< HEAD
 </project>
-=======
-</project>
->>>>>>> d76e5236faa6be72f4613c940a4c53eeb441a0ec
