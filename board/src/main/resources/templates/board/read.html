@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시글 상세보기</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <style>
+        body {transform: scale(0.8);}
+    </style>
+</head>
+<body>
+<!-- Main -->
+<div id="main">
+    <div class="wrapper">
+        <div class="inner">
+
+            <!-- Elements -->
+            <header class="major">
+                <h1>Board</h1>
+                <p>게시글 상세보기</p>
+            </header>
+            <!-- Table -->
+            <h3><a id="goList" class="button small">목록 보기</a></h3>
+            <div class="content">
+                <div class="form">
+                    <form method="post" action="/board/remove" th:object="${board}">
+                        <div class="fields">
+                            <div class="field">
+                                <h4>번호</h4>
+                                <input type="text" readonly th:field="*{boardBno}"/>
+                            </div>
+                            <div class="field">
+                                <h4>제목</h4>
+                                <input type="text" readonly th:field="*{boardTitle}">
+                            </div>
+                            <div class="field">
+                                <h4>내용</h4>
+                                <textarea rows="6" style="resize:none" readonly th:field="*{boardContent}"></textarea>
+                            </div>
+                            <div class="field">
+                                <h4>작성자</h4>
+                                <input type="text" readonly th:field="*{boardWriter}"/>
+                            </div>
+                        </div>
+                        <ul class="actions special">
+                            <li>
+                                <input type="button" class="button" value="수정" onclick="goUpdate()"/>
+                                <input type="submit" class="button" value="삭제"/>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="button" name="showHeros" value="유저 목록"/>
+    <div id="showList"></div>
+    <input type="button" name="showHero" value="유저"/>
+    <div id="showUser"></div>
+</div>
+</body>
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/reply.js"></script>
+<script src="/assets/js/test.js"></script>
+<script src="/assets/js/hero.js"></script>
+<script th:inline="javascript">
+    let boardBno = [[${board.boardBno}]];
+    let paging = [[${criteria.listLink}]];
+    $('input[name=showHeros]').on('click',function() {
+        heroService.getList(
+            function (hero) {
+                $.each(hero, function (index, item) {
+                    $('#showList').append(item.heroLevel + " ");
+                    $('#showList').append(item.heroName + " ");
+                    $('#showList').append(item.heroClass + " ");
+                    
+                })
+            }
+        )
+    });
+
+    $('input[name=showHero]').on('click',function() {
+        heroService.get(5,
+            function (hero) {
+                $('#showUser').text(hero.heroName)
+            }
+        )
+    });
+    // replyService.add({
+    //     replyContent: "JS Module Test",
+    //     replyWriter: "hds1234",
+    //     boardBno: boardBno
+    // }, function(result){
+    //     alert(result);
+    // }, function(a, b, c){console.log(a, b, c)});
+
+
+
+
+    function goUpdate() {
+        location.href = '/board/modify' + paging + '&boardBno=' + boardBno;
+    }
+
+    $("a#goList").click(function (e) {
+        e.preventDefault();
+        location.href="/board/list" + paging;
+    })
+
+    // replyService.get(
+    //     26
+    // , function (reply) {
+    //         console.log(reply);
+    //     }, function (a, b, c) { console.log(a,b,c)
+    //
+    //     });
+
+    /*replyService.getList(
+        {
+            bno : boardBno,
+            page : 2
+        },
+        function (result) {
+            console.log(result);
+        });*/
+
+    // replyService.remove(
+    //     26
+    //     ,function(result) {
+    //         alert(result);
+    //     });
+
+    // replyService.modify(
+    //     21,{
+    //         replyContent : "ajax수정1"
+    //     },
+    //     function (result) {
+    //         console.log(result);
+    //     });
+
+    /*testService.test01(
+        function(result) {
+            alert(result);
+        }
+    )*/
+    // testService.test02(
+    //     "임진석",
+    //     function(result) {
+    //         console.log(result);
+    //     }
+    // )
+    // testService.test03(
+    //     function(result) {
+    //         console.log(result);
+    //     }
+    // )
+    // testService.test04({
+    //     name : "임진석",
+    //     age : 29
+    // },
+    //     function(result) {
+    //         console.log(result);
+    //     }
+    // )
+
+
+</script>
+</html>
