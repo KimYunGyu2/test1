@@ -20,6 +20,7 @@ public class BoardMapperTests {
     @Test
     public void getTotalTest(){
         boardMapper.getTotal();
+        log.info("잘됨");
     }
 //    @Test
 //    public void insertTest(){
